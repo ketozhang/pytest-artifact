@@ -41,7 +41,7 @@ Documentation = "https://github.com/ketozhang/pytest-artifacts"
 "Bug Tracker" = "https://github.com/ketozhang/pytest-artifacts/issues"
 
 [project.entry-points.pytest11]
-artifacts = "pytest_pytest_artifacts.plugin"
+artifacts = "pytest_artifacts.plugin"
 
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
