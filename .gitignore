@@ -1,3 +1,5 @@
+.artifacts/
+
 # Hatch VCS
 _version.py
 
