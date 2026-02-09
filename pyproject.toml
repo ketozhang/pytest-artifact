@@ -1,5 +1,5 @@
 [project]
-name = "pytest-artifacts"
+name = "pytest-artifact"
 dynamic = ["version"]
 description = "Pytest plugin for managing test artifacts"
 readme = "README.md"
@@ -51,7 +51,7 @@ build-backend = "hatchling.build"
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/pytest_artifacts/_version.py"
+version-file = "src/pytest_artifact/_version.py"
 
 [dependency-groups]
 dev = [
