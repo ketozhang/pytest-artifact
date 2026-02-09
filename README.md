@@ -33,7 +33,8 @@ def test_benchmark(artifacts):
         elapsed.append(end_time - start_time)
 
     plt.scatter(times, elapsed)
-    plt.savefig(artifacts.dir / 'benchmark.png')
+    with artifacts.open('benchmark.png') as f:
+        plt.savefig(f)
 ```
 
 ```
