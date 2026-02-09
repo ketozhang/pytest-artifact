@@ -1,5 +1,5 @@
 [project]
-name = "pytest-artifacts"
+name = "pytest-artifact"
 dynamic = ["version"]
 description = "Pytest plugin for managing test artifacts"
 readme = "README.md"
@@ -36,12 +36,12 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/ketozhang/pytest-artifacts"
-Documentation = "https://github.com/ketozhang/pytest-artifacts"
-"Bug Tracker" = "https://github.com/ketozhang/pytest-artifacts/issues"
+Repository = "https://github.com/ketozhang/pytest-artifact"
+Documentation = "https://github.com/ketozhang/pytest-artifact"
+"Bug Tracker" = "https://github.com/ketozhang/pytest-artifact/issues"
 
 [project.entry-points.pytest11]
-artifacts = "pytest_artifacts.plugin"
+artifacts = "pytest_artifact.plugin"
 
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
@@ -51,7 +51,7 @@ build-backend = "hatchling.build"
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/pytest_artifacts/_version.py"
+version-file = "src/pytest_artifact/_version.py"
 
 [dependency-groups]
 dev = [

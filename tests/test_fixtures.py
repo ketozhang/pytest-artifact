@@ -73,7 +73,7 @@ def test_fixture_artifacts(pytester):
     """)
 
     # run pytest with the following cmd args
-    result = pytester.runpytest("--artifacts-dir=.pytest_artifacts/", "-v")
+    result = pytester.runpytest("--artifacts-dir=.pytest_artifact/", "-v")
 
     result.stdout.fnmatch_lines(
         [
@@ -84,9 +84,9 @@ def test_fixture_artifacts(pytester):
     assert result.ret == 0
 
     # fnmatch_lines does an assertion internally
-    pytester.run("ls", "-a").stdout.fnmatch_lines(["*.pytest_artifacts"])
-    pytester.run("find", ".pytest_artifacts", "-name", "file.txt").stdout.fnmatch_lines(
+    pytester.run("ls", "-a").stdout.fnmatch_lines(["*.pytest_artifact"])
+    pytester.run("find", ".pytest_artifact", "-name", "file.txt").stdout.fnmatch_lines(
         [
-            ".pytest_artifacts/test_sth/file.txt",
+            ".pytest_artifact/test_sth/file.txt",
         ]
     )

@@ -1,4 +1,4 @@
-Welcome to pytest-artifacts\'s documentation!
+Welcome to pytest-artifact\'s documentation!
 =============================================
 
 Contents:
