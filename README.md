@@ -8,13 +8,14 @@ Pytest plugin for managing test artifacts
 
 ## Installation
 
-You can install "pytest-artifact" via [pip](https://pypi.org/project/pip/) from [PyPI](https://pypi.org/project):
+You can install "pytest-artifact"  from [PyPI](https://pypi.org/project):
 
 ```bash
 pip install pytest-artifact
 ```
 
 ## Usage
+Attach the `artifacts` fixture to your pytest test case. The attribute `artifacts.dir` is a dedicated directory for the test case.
 
 ```py
 import time
@@ -26,13 +27,40 @@ def test_benchmark(artifacts):
     for t in times:
         start_time = time.perf_counter()
 
-        sleep(t)
+        time.sleep(t)
 
         end_time = time.perf_counter()
         elapsed.append(end_time - start_time)
 
     plt.scatter(times, elapsed)
     plt.savefig(artifacts.dir / 'benchmark.png')
+```
+
+```
+.artifacts/
+└── test_benchmark/
+    └── benchmark.png
+```
+
+The test case directory is named after the test path, function name, and if any, the test parameter ID.
+
+### Configure
+Configurations may be set in `pyproject.toml`, `pytest.ini`, or passed as command line options.
+
+```toml
+# pyproject.toml
+[tool.pytest]
+artifacts_dir = .artifacts/
+```
+
+```ini
+# pytest.ini
+[pytest]
+artifacts_dir = .artifacts/
+```
+
+```sh
+pytest --artifacts-dir .artifacts/ tests/
 ```
 
 ## Contributing
