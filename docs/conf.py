@@ -1,4 +1,4 @@
-# pytest-artifacts documentation build configuration file, created by
+# pytest-artifact documentation build configuration file, created by
 # sphinx-quickstart on Thu Oct  1 00:43:18 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -43,7 +43,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "pytest-artifacts"
+project = "pytest-artifact"
 copyright = "2015, Keto D. Zhang"
 author = "Keto D. Zhang"
 
@@ -254,7 +254,7 @@ man_pages = [
     (
         master_doc,
         "pytest-cookiecutterplugin_name",
-        "pytest-artifacts Documentation",
+        "pytest-artifact Documentation",
         [author],
         1,
     )
@@ -273,7 +273,7 @@ texinfo_documents = [
     (
         master_doc,
         "pytest-cookiecutterplugin_name",
-        "pytest-artifacts Documentation",
+        "pytest-artifact Documentation",
         author,
         "pytest-cookiecutterplugin_name",
         "One line description of project.",

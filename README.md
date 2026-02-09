@@ -1,43 +1,48 @@
-# pytest-artifacts
+# pytest-artifact
 
-[![PyPI version](https://img.shields.io/pypi/v/pytest-artifacts.svg)](https://pypi.org/project/pytest-artifacts)
-[![Python versions](https://img.shields.io/pypi/pyversions/pytest-artifacts.svg)](https://pypi.org/project/pytest-artifacts)
-[![See Build Status on GitHub Actions](https://github.com/ketozhang/pytest-artifacts/actions/workflows/main.yml/badge.svg)](https://github.com/ketozhang/pytest-artifacts/actions/workflows/main.yml)
+[![PyPI version](https://img.shields.io/pypi/v/pytest-artifact.svg)](https://pypi.org/project/pytest-artifact)
+[![Python versions](https://img.shields.io/pypi/pyversions/pytest-artifact.svg)](https://pypi.org/project/pytest-artifact)
+[![See Build Status on GitHub Actions](https://github.com/ketozhang/pytest-artifact/actions/workflows/main.yml/badge.svg)](https://github.com/ketozhang/pytest-artifact/actions/workflows/main.yml)
 
 Pytest plugin for managing test artifacts
 
----
-
-This [pytest](https://github.com/pytest-dev/pytest) plugin was generated with [Cookiecutter](https://github.com/audreyr/cookiecutter) along with [@hackebrot](https://github.com/hackebrot)'s [cookiecutter-pytest-plugin](https://github.com/pytest-dev/cookiecutter-pytest-plugin) template.
-
-## Features
-
-- TODO
-
-## Requirements
-
-- TODO
-
 ## Installation
 
-You can install "pytest-artifacts" via [pip](https://pypi.org/project/pip/) from [PyPI](https://pypi.org/project):
+You can install "pytest-artifact" via [pip](https://pypi.org/project/pip/) from [PyPI](https://pypi.org/project):
 
 ```bash
-pip install pytest-artifacts
+pip install pytest-artifact
 ```
 
 ## Usage
 
-- TODO
+```py
+import time
+import matplotlib.pyplot as plt
+
+def test_benchmark(artifacts):
+    times = range(1, 101, 10)
+    elapsed = []
+    for t in times:
+        start_time = time.perf_counter()
+
+        sleep(t)
+
+        end_time = time.perf_counter()
+        elapsed.append(end_time - start_time)
+
+    plt.scatter(times, elapsed)
+    plt.savefig(artifacts.dir / 'benchmark.png')
+```
 
 ## Contributing
 
-Contributions are very welcome. Tests can be run with [tox](https://tox.readthedocs.io/en/latest/), please ensure the coverage at least stays the same before you submit a pull request.
+Contributions are very welcome.
 
 ## License
 
-Distributed under the terms of the [MIT](https://opensource.org/licenses/MIT) license, "pytest-artifacts" is free and open source software
+Distributed under the terms of the [MIT](https://opensource.org/licenses/MIT) license, "pytest-artifact" is free and open source software
 
 ## Issues
 
-If you encounter any problems, please [file an issue](https://github.com/ketozhang/pytest-artifacts/issues) along with a detailed description.
+If you encounter any problems, please [file an issue](https://github.com/ketozhang/pytest-artifact/issues) along with a detailed description.
