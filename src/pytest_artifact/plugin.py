@@ -8,6 +8,8 @@ from typing import Generator
 
 import pytest
 
+from . import raise_deprecated_package_name_warning
+
 log = logging.getLogger(__name__)
 
 
@@ -50,6 +52,7 @@ def artifacts(request) -> Generator[ArtifactsRepository, None, None]:  # pylint:
         ArtifactsRepository: The artifacts repository for the specific test
         case.
     """
+    raise_deprecated_package_name_warning()
     artifacts_dir_for_test_case = (
         Path(request.config.artifacts_dir).resolve() / request.node.name
     )

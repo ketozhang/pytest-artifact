@@ -2,6 +2,7 @@
 
 > [!WARNING]
 > This package, `pytest-artifact`, is deprecated and has been renamed to `pytest-artifacts`.
+> No new versions will be released under the old name.
 
 Please install [`pytest-artifacts`](https://pypi.org/project/pytest-artifacts/) instead.
 
