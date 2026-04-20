@@ -1,7 +1,7 @@
 [project]
 name = "pytest-artifact"
-dynamic = ["version"]
-description = "Pytest plugin for managing test artifacts"
+version = "0.2.0.post2"
+description = "Deprecated package, use `pytest-artifacts` (with an s) instead. Pytest plugin for managing test artifacts."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -17,7 +17,7 @@ maintainers = [
 keywords = ["pytest", "testing", "artifacts", "plugin"]
 
 classifiers = [
-    "Development Status :: 7 - Beta",
+    "Development Status :: 7 - Inactive",
     "Framework :: Pytest",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -46,9 +46,6 @@ artifacts = "pytest_artifact.plugin"
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
-
-[tool.hatch.version]
-source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/pytest_artifact/_version.py"
