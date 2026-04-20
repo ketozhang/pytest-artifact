@@ -17,7 +17,7 @@ maintainers = [
 keywords = ["pytest", "testing", "artifacts", "plugin"]
 
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 7 - Beta",
     "Framework :: Pytest",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
