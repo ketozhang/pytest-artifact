@@ -59,6 +59,3 @@ version-file = "src/pytest_artifacts/_version.py"
 dev = [
     "ruff>=0.14.13",
 ]
-deprecated = [
-    "pytest-artifact >= 0.2.0.post2"
-]
