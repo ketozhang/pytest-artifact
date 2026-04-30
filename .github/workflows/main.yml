@@ -27,6 +27,9 @@ jobs:
       - name: Test
         run: uv run pytest -v tests/
 
+      - name: Test deprecated features
+        run: uv run --group=deprecated pytest -v tests/test_deprecated_package_name.py
+
   check:
     name: check all unit tests pass
     runs-on: ubuntu-latest
