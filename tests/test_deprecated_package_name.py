@@ -9,10 +9,6 @@ pytest_artifact = pytest.importorskip("pytest_artifact")
 
 def test_pytest_artifact_raises_deprecation_warning(pytester):
     """Test that importing pytest_artifact raises a deprecation warning."""
-    # with pytest.raises(DeprecationWarning):
-    #     artifacts = request.getfixturevalue("artifacts")
-    #     assert artifacts.__module__.split(".")[0] == "pytest_artifact"
-
     pytester.makepyfile("""
         def test_something(artifacts):
             assert artifacts.__module__.split(".")[0] == "pytest_artifact"
