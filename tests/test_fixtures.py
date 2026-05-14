@@ -31,8 +31,12 @@ import pytest
         ),
     ],
 )
-def test_fixture_artifacts_dir(pytester, addopts, ini, expected):
-    """Test that the artifacts_dir fixture returns the default value."""
+def test_can_configure_artifacts_dir(pytester, addopts, ini, expected):
+    """Test that the artifacts_dir fixture can be configured from
+    * pytest ini file
+    * command line arguments
+    * both ini and command line arguments, with command line taking precedence
+    """
     pytester.makeini(ini)
 
     # create a temporary pytest test module
@@ -50,6 +54,41 @@ def test_fixture_artifacts_dir(pytester, addopts, ini, expected):
             "*::test_sth PASSED*",
         ]
     )
+
+    # make sure that we get a '0' exit code for the testsuite
+    assert result.ret == 0
+
+
+def test_can_configure_artifacts_use_subdir_for_parametrize(pytester):
+    """Test that the artifacts_use_subdir_for_parametrize fixture can be configured from
+    pytest ini file.
+    """
+    pytester.makeini("""
+        [pytest]
+        artifacts_use_subdir_for_parametrize = true
+        """)
+
+    # create a temporary pytest test module
+    pytester.makepyfile("""
+        import pytest
+
+        @pytest.mark.parametrize("text", ["hello", "goodbye"])
+        def test_sth(text, request, artifacts):
+            assert request.config.artifacts_use_subdir_for_parametrize is True
+
+            with artifacts.open("foobar.txt", mode="wt") as f:
+                f.write(text)
+                f.flush()
+
+            with artifacts.open("foobar.txt", mode="rt") as f:
+                assert f.readlines() == [text]
+
+            assert artifacts.dir.is_dir() and artifacts.dir.name in ["hello", "goodbye"]
+
+    """)
+
+    # run pytest with the following cmd args
+    result = pytester.runpytest("-v")
 
     # make sure that we get a '0' exit code for the testsuite
     assert result.ret == 0
