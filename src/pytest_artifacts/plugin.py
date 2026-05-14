@@ -23,6 +23,12 @@ def pytest_addoption(parser):
     parser.addini(
         "artifacts_dir", "Directory to store test artifacts.", default=".artifacts/"
     )
+    parser.addini(
+        "artifacts_use_subdir_for_parametrize",
+        "Whether to use subdirectories for parameterized tests.",
+        default=False,
+        type="bool",
+    )
 
 
 def pytest_configure(config):
@@ -32,9 +38,16 @@ def pytest_configure(config):
 
     config.artifacts_dir = artifacts_dir
 
+    artifacts_use_subdir_for_parametrize = config.getini(
+        "artifacts_use_subdir_for_parametrize"
+    )
+    config.artifacts_use_subdir_for_parametrize = artifacts_use_subdir_for_parametrize
+
 
 @pytest.fixture
-def artifacts(request) -> Generator[ArtifactsRepository, None, None]:  # pylint: disable=invalid-name
+def artifacts(
+    request: pytest.FixtureRequest,
+) -> Generator[ArtifactsRepository, None, None]:  # pylint: disable=invalid-name
     """Provide an artifact repository to store and access test artifacts for the
     particular test case.
 
@@ -50,10 +63,21 @@ def artifacts(request) -> Generator[ArtifactsRepository, None, None]:  # pylint:
         ArtifactsRepository: The artifacts repository for the specific test
         case.
     """
-    artifacts_dir_for_test_case = (
-        Path(request.config.artifacts_dir).resolve() / request.node.name
-    )
-    with ArtifactsRepository(artifacts_dir_for_test_case) as repo:
+    base_artifacts_dir = Path(request.config.artifacts_dir).resolve()
+
+    if request.config.artifacts_use_subdir_for_parametrize:
+        try:
+            test_case_artifacts_dir = (
+                base_artifacts_dir
+                / request.node.originalname
+                / request.node.callspec.id
+            )
+        except AttributeError:
+            test_case_artifacts_dir = base_artifacts_dir / request.node.originalname
+    else:
+        test_case_artifacts_dir = base_artifacts_dir / request.node.originalname
+
+    with ArtifactsRepository(test_case_artifacts_dir) as repo:
         yield repo
 
 
